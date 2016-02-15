@@ -1,0 +1,51 @@
+server:
+  port: 8080 
+
+info:
+  component: Zuul Server Int Eureka
+hystrix:
+  threadpool:
+    default:
+      coreSize: 100
+      maxQueueSize: -1
+      queueSizeRejectionThreshold: 5
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 20
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    preferIpAddress: true
+#    metadataMap:
+#      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
+  client:
+    # Default values comes from org.springframework.cloud.netflix.eurek.EurekaClientConfigBean
+    registryFetchIntervalSeconds: 5
+    instanceInfoReplicationIntervalSeconds: 5
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+#  ignoredServices: "*"
+#  prefix: /api
+  routes:
+    book: 
+       path: /books/**
+       serviceId: BOOK
