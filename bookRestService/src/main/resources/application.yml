@@ -9,7 +9,7 @@ eureka:
     instanceInfoReplicationIntervalSeconds: 1
     initialInstanceInfoReplicationIntervalSeconds: 1
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://172.31.35.136:8761/eureka/
   instance:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     hostname: localhost
