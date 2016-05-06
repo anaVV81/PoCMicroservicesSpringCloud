@@ -9,7 +9,6 @@
 	<name>PoCMicroservicesSpringCloud</name>
 
 	<modules>
-		<module>bookRestService</module>
 		<module>bookRestServiceHystrix</module>
 		<module>eureka</module>
 		<module>hystrixDashboard</module>
