@@ -12,8 +12,8 @@ eureka:
       defaultZone: http://172.31.35.136:8761/eureka/
   instance:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    hostname: localhost
-#    preferIpAddress: true
+#    hostname: localhost
+    preferIpAddress: true
 #    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 #    metadataMap:
 #      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

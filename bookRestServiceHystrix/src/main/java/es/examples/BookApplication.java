@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.beans.factory.annotation.Autowired;
+import es.examples.BookComponent;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -15,15 +17,13 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 
 public class BookApplication {
+  @Autowired
+  BookComponent bookComponent;
 
 //(fallbackMethod = "fallbackMethod")
   @RequestMapping(value = "/available")
-  @HystrixCommand
   public String available() {
-    return "The book is available";
-  }
-  public String fallbackMethod() {
-    return "The book is available-fallback";
+    return bookComponent.isBookAvailable();
   }
 
   @RequestMapping(value = "/checked-out")
